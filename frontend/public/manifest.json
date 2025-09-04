@@ -1,0 +1,25 @@
+{
+  "short_name": "Tot Stad",
+  "name": "Tottenham Stadium Events",
+  "icons": [
+    {
+      "src": "Spurs_2017_badge.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "Spurs_2017_badge.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "Spurs_2017_badge.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
