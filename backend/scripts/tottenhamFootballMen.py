@@ -60,7 +60,8 @@ def tottenhamFootballMen():
     driver = None
     try:
         driver = webdriver.Chrome(options=opts)
-        driver.set_page_load_timeout(30)
+        driver.set_page_load_timeout(120)
+        wait = WebDriverWait(driver, 120)
 
         driver.get("https://www.tottenhamhotspur.com/fixtures/men/")
 
