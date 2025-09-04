@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.common.exceptions import TimeoutException
 
 from datetime import datetime
 from pathlib import Path
@@ -25,7 +25,7 @@ def formatDateTime(date, day):
         dayNumber, monthStr = dayNumberAndMonth.split()
         dayNumber = int(dayNumber)
         month = months[monthStr.upper()]
-        
+
         today = datetime.now()
         assumed_year = today.year
         fixture_date = datetime(assumed_year, month, dayNumber)
@@ -44,49 +44,77 @@ def formatDateTime(date, day):
 def tottenhamFootballMen():
     finalEvents = []
 
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1920,1080")
-    driver = webdriver.Chrome(options=options)  
+    opts = Options()
+    opts.add_argument("--headless=new")
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--disable-gpu")
+    opts.add_argument("--window-size=1920,1080")
+    opts.add_argument("--no-zygote")
+    opts.add_argument("--disable-extensions")
+    opts.add_argument("--disable-software-rasterizer")
+    opts.add_argument("--hide-scrollbars")
 
-    driver.get('https://www.tottenhamhotspur.com/fixtures/men/')
-    driver.refresh()
-    
-    wait = WebDriverWait(driver, 10)
-    wait.until(EC.element_to_be_clickable((By.ID,'onetrust-accept-btn-handler'))).click()
+    opts.page_load_strategy = "eager"
 
-    fixtureGroups = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME,"FixtureGroup")))
-    for group in fixtureGroups:
-        fixtureItems = group.find_elements(By.CLASS_NAME, "FixtureItem ")
-        for fixture in fixtureItems:
-            match = fixture.get_attribute("title")
+    driver = None
+    try:
+        driver = webdriver.Chrome(options=opts)
+        driver.set_page_load_timeout(30)
 
-            #Figure out if it's been played or not
-            scoresText = fixture.find_element(By.CLASS_NAME,"scores").get_attribute("innerHTML")
-            if scoresText != "VS":
-                continue
+        driver.get("https://www.tottenhamhotspur.com/fixtures/men/")
+
+        wait = WebDriverWait(driver, 20)
+
+        try:
+            wait.until(
+                EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
+            ).click()
+        except TimeoutException:
+            pass
+
+        fixtureGroups = wait.until(
+            EC.visibility_of_all_elements_located((By.CLASS_NAME, "FixtureGroup"))
+        )
+
+        for group in fixtureGroups:
+            fixtureItems = group.find_elements(By.CLASS_NAME, "FixtureItem ")
+            for fixture in fixtureItems:
+                match = fixture.get_attribute("title")
+
+                scoresText = fixture.find_element(By.CLASS_NAME, "scores").get_attribute("innerHTML")
+                if scoresText != "VS":
+                    continue
+                try:
+                    fixtureDesktop = fixture.find_element(By.CLASS_NAME, "FixtureItem__desktop")
+                    fixtureDesktopWrapper = fixtureDesktop.find_element(By.CLASS_NAME, "wrapper")
+                    _homeGameTest = fixtureDesktopWrapper.find_element(
+                        By.CSS_SELECTOR, ".stadium-tag.stadium-tag--home"
+                    )
+                    fixtureItemKickOffTime = fixtureDesktopWrapper.find_element(By.CLASS_NAME, "FixtureItem__kickoff")
+                    fixtureDay = fixtureItemKickOffTime.find_element(By.TAG_NAME, "p").text
+                    fixtureItemKickOffTimeText = fixtureItemKickOffTime.text
+                    fixtureDate = fixtureItemKickOffTimeText.splitlines()[1]
+                    formattedDate, formattedTime = formatDateTime(fixtureDate, fixtureDay)
+
+                    abbreviationsAsText = []
+                    abbreviations = fixtureDesktopWrapper.find_element(
+                        By.CLASS_NAME, "FixtureItem__crests"
+                    ).find_elements(By.TAG_NAME, "p")
+                    for abbreviation in abbreviations:
+                        abbreviationsAsText.append(abbreviation.text)
+
+                    arrayToAppend = ["Football", match, formattedDate, formattedTime, abbreviationsAsText]
+                    finalEvents.append(arrayToAppend)
+                except Exception:
+                    # skip malformed/played items silently (same as your original)
+                    pass
+
+    finally:
+        if driver:
             try:
-                fixtureDesktop = fixture.find_element(By.CLASS_NAME, 'FixtureItem__desktop')
-                fixtureDesktopWrapper = fixtureDesktop.find_element(By.CLASS_NAME, 'wrapper')
-                homeGameTest = fixtureDesktopWrapper.find_element(By.CSS_SELECTOR, '.stadium-tag.stadium-tag--home')
-                fixtureItemKickOffTime = fixtureDesktopWrapper.find_element(By.CLASS_NAME, 'FixtureItem__kickoff')
-                fixtureDay = fixtureItemKickOffTime.find_element(By.TAG_NAME, 'p').text
-                fixtureItemKickOffTimeText = fixtureItemKickOffTime.text
-                fixtureDate = fixtureItemKickOffTimeText.splitlines()[1]
-                formattedDate, formattedTime = formatDateTime(fixtureDate, fixtureDay)
-                
-                abbreviationsAsText = []
-                abbreviations = fixtureDesktopWrapper.find_element(By.CLASS_NAME, 'FixtureItem__crests').find_elements(By.TAG_NAME, "p")
-                for abbreviation in abbreviations:
-                    abbreviationsAsText.append(abbreviation.text)
-
-                arrayToAppend = ["Football",match, formattedDate, formattedTime,abbreviationsAsText]
-                finalEvents.append(arrayToAppend)
-            except Exception as e:
+                driver.quit()
+            except Exception:
                 pass
 
-    driver.quit()
     return finalEvents
