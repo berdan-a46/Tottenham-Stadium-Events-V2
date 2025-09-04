@@ -75,7 +75,7 @@ def tottenhamFootballMen():
             pass
 
         fixtureGroups = wait.until(
-            EC.visibility_of_all_elements_located((By.CLASS_NAME, "FixtureGroup"))
+            EC.presence_of_all_elements_located((By.CLASS_NAME, "FixtureGroup"))
         )
 
         for group in fixtureGroups:
