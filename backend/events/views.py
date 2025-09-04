@@ -4,7 +4,10 @@ import heapq
 from datetime import datetime
 from scripts.tottenhamFootballMen import tottenhamFootballMen
 from scripts.TMEvents import TMEvents
+import logging
+from django.http import JsonResponse
 
+logger = logging.getLogger(__name__)
 
 def parseDate(event):
 
@@ -19,8 +22,28 @@ def parseDate(event):
             f"Failed to parse date/time. date={date!r}, time={time!r}, event={event!r}"
         ) from e
 
-
 def index(request):
+    resp = {"events": []}
+
+    try:
+        tmEvents = TMEvents()
+        resp["ticketMasterTottenham"] = tmEvents
+    except Exception as e:
+        logger.exception("TMEvents failed")
+        resp["ticketMasterTottenham"] = []
+        resp["tm_error"] = str(e)
+
+    try:
+        spursEvents = tottenhamFootballMen()
+        resp["tottenhamFootballMen"] = spursEvents
+    except Exception as e:
+        logger.exception("tottenhamFootballMen failed")
+        resp["tottenhamFootballMen"] = []
+        resp["spurs_error"] = str(e)
+
+    return JsonResponse(resp)
+
+def indexOld(request):
     eventDictionary = {}
     tm_events = TMEvents()
     spurs_events = tottenhamFootballMen()
