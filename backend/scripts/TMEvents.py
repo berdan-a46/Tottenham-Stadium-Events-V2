@@ -8,7 +8,9 @@ try:
 except:
     pass
 
-apiKey = os.getenv('TICKETMASTER_API_KEY')
+apiKey = os.getenv("TM_API_KEY")
+if not apiKey:
+    raise RuntimeError("TM_API_KEY not set")
 
 def isAlreadySameDateAndTime(eventArray, currentEvent):
     for event in eventArray:
