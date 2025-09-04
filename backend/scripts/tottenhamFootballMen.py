@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -53,7 +52,7 @@ def tottenhamFootballMen():
     options.add_argument("--window-size=1920,1080")
     options.binary_location = "/usr/bin/chromium"
     driver = webdriver.Chrome(options=options)  
-    
+
     driver.get('https://www.tottenhamhotspur.com/fixtures/men/')
     driver.refresh()
     
