@@ -6,3 +6,4 @@ build/
 Thumbs.db
 README.md
 Tottenham stadium notes.txt
+__pycache__

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -5,12 +7,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
-from datetime import datetime
-import os
 
-os.environ['TZ'] = 'Europe/London'
-time.tzset()
+from datetime import datetime
+from pathlib import Path
+import os
+import sys
+import time
+import platform
+
 
 def formatDateTime(date, day):
     months = {
@@ -18,15 +22,21 @@ def formatDateTime(date, day):
         "JUL": 7, "AUG": 8, "SEP": 9, "OCT": 10, "NOV": 11, "DEC": 12
     }
     try:
-        dayNumberAndMonth, time = date.split(",")
+        dayNumberAndMonth, timePart = date.split(",")
         dayNumber, monthStr = dayNumberAndMonth.split()
         dayNumber = int(dayNumber)
-        month = months[monthStr]
-        year = 2025 if month >= 6 else 2026
-        formattedDate = f"{day} {dayNumber:02d} {datetime(year, month, dayNumber).strftime('%B')} {year}"
-        formattedTime = time
+        month = months[monthStr.upper()]
+        
+        today = datetime.now()
+        assumed_year = today.year
+        fixture_date = datetime(assumed_year, month, dayNumber)
+        if fixture_date < today:
+            fixture_date = datetime(assumed_year + 1, month, dayNumber)
+
+        formattedDate = f"{day} {dayNumber:02d} {fixture_date.strftime('%B')} {fixture_date.year}"
+        formattedTime = timePart.strip()
         return formattedDate, formattedTime
-    
+
     except Exception as e:
         print(f"Error in format_date_time: {e}")
         return None, None
@@ -38,7 +48,6 @@ def tottenhamFootballMen():
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    options.binary_location = os.getenv("CHROME_BINARY_PATH", "/usr/bin/google-chrome")
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get('https://www.tottenhamhotspur.com/fixtures/men/')

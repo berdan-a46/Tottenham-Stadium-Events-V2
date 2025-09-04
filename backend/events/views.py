@@ -3,23 +3,36 @@ import json
 import heapq
 from datetime import datetime
 from scripts.tottenhamFootballMen import tottenhamFootballMen
-from scripts.rugbyAndTMEvents import rugbyAndTMEvents
+from scripts.TMEvents import TMEvents
+
 
 def parseDate(event):
-    date = event[2]  
-    time = event[3] 
+
+    date = event[2] if len(event) > 2 else ""
+    time = event[3] if len(event) > 3 else ""
     dateTime = f"{date} {time}"
-    return datetime.strptime(dateTime, "%A %d %B %Y %H:%M")
+
+    try:
+        return datetime.strptime(dateTime, "%A %d %B %Y %H:%M")
+    except ValueError as e:
+        raise ValueError(
+            f"Failed to parse date/time. date={date!r}, time={time!r}, event={event!r}"
+        ) from e
+
 
 def index(request):
     eventDictionary = {}
-    eventDictionary["rugby"], eventDictionary["ticketMasterTottenham"] = rugbyAndTMEvents()
-    eventDictionary["tottenhamFootballMen"] = tottenhamFootballMen()
-     
+    tm_events = TMEvents()
+    spurs_events = tottenhamFootballMen()
+
+
+    eventDictionary["ticketMasterTottenham"] = tm_events
+    eventDictionary["tottenhamFootballMen"] = spurs_events
+
     minHeap = []
     result = []
 
-    #Push first event of each event type into the heap to start it off
+    # Push first event of each event type into the heap to start it off
     for eventType, eventList in eventDictionary.items():
         if eventList:
             firstEvent = eventList[0]
@@ -27,14 +40,14 @@ def index(request):
             heapq.heappush(minHeap, (firstEventDate, firstEvent, 0, eventList))
 
     while minHeap:
-        currentDate, currentEvent, index, eventList = heapq.heappop(minHeap)
+        currentDate, currentEvent, index_in_list, eventList = heapq.heappop(minHeap)
         result.append(currentEvent)
 
-        
-        if index + 1 < len(eventList):
-            nextEvent = eventList[index + 1]
+        if index_in_list + 1 < len(eventList):
+            nextEvent = eventList[index_in_list + 1]
             nextEventDate = parseDate(nextEvent)
-            heapq.heappush(minHeap, (nextEventDate, nextEvent, index + 1, eventList))
-    
-    return HttpResponse(json.dumps(result))
+            heapq.heappush(
+                minHeap, (nextEventDate, nextEvent, index_in_list + 1, eventList)
+            )
 
+    return HttpResponse(json.dumps(result))

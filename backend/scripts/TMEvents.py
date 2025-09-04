@@ -1,6 +1,5 @@
 import requests
 from datetime import datetime
-from scripts.rugby import rugby
 import os
 
 try:
@@ -8,7 +7,8 @@ try:
     load_dotenv()
 except:
     pass
-apiKey = os.getenv('API_KEY')
+
+apiKey = os.getenv('TICKETMASTER_API_KEY')
 
 def isAlreadySameDateAndTime(eventArray, currentEvent):
     for event in eventArray:
@@ -28,8 +28,7 @@ def formatEvents(events):
     
     return formattedEvents
 
-def rugbyAndTMEvents():
-    rugbyEvents = rugby()
+def TMEvents():
 
     url = f'https://app.ticketmaster.com/discovery/v2/events.json?venueId=KovZ9177OxV&apikey={apiKey}'
     response = requests.get(url)
@@ -46,19 +45,6 @@ def rugbyAndTMEvents():
 
     formattedEvents = formatEvents(acceptedEvents)
 
-    #Filter out rugby events from the accepted events
-    for rugbyEvent in rugbyEvents:
-        counter = 0
-        while counter < len(formattedEvents):
-            tokensForRugby = set(rugbyEvent[1].lower().replace("-", "").split())
-            tokensForFormatted = set(formattedEvents[counter][1].lower().replace("-", "").split())
-            overlap = tokensForRugby.intersection(tokensForFormatted)
-            similarity = len(overlap) / max(len(tokensForRugby), len(tokensForFormatted))
-            
-            if similarity > 0.5:  
-                formattedEvents.pop(counter)
-            else:
-                counter+=1
 
     #Filter out football events from the accepted events
     counter = 0
@@ -71,4 +57,5 @@ def rugbyAndTMEvents():
             counter +=1
 
     formattedEvents.sort(key=lambda x: datetime.strptime(f"{x[2]} {x[3]}", "%A %d %B %Y %H:%M"))
-    return rugbyEvents,formattedEvents
+
+    return formattedEvents
