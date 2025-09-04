@@ -3,11 +3,10 @@ from __future__ import annotations
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 
 from datetime import datetime
 from pathlib import Path
@@ -53,10 +52,7 @@ def tottenhamFootballMen():
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
     options.binary_location = "/usr/bin/chromium"
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
-        options=options
-    )
+    driver = webdriver.Chrome(service=Service("/usr/bin/chromedriver"), options=options)
 
     driver.get('https://www.tottenhamhotspur.com/fixtures/men/')
     driver.refresh()
