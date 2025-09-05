@@ -31,7 +31,7 @@ jobs:
 
       - env:
           TM_API_KEY: ${{ secrets.TM_API_KEY }}
-        run: python scripts/run_all_scrapes.py
+        run: python scripts/runAllScripts.py
 
       - run: |
           git config user.name "github-actions[bot]"
