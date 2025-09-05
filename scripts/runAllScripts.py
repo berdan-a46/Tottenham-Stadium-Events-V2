@@ -57,8 +57,7 @@ def runAllScripts():
 
 if __name__ == "__main__":
     events = runAllScripts()
-
-    out_path = Path("public/data/events.json")
+    out_path = Path("frontend/public/data/events.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     payload = {
@@ -67,4 +66,5 @@ if __name__ == "__main__":
     }
 
     out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
     
