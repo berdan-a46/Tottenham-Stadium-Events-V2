@@ -34,9 +34,21 @@ jobs:
         run: python scripts/runAllScripts.py
 
       - run: |
+          echo "::group::ls & file info"
+          ls -lah public/data || true
+          test -f public/data/events.json && wc -c public/data/events.json || true
+          echo "::endgroup::"
+          echo "::group::head"
+          head -n 20 public/data/events.json || true
+          echo "::endgroup::"
+          echo "::group::sha256"
+          sha256sum public/data/events.json || true
+          echo "::endgroup::"
+
+      - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/data/events.json
-          git diff --quiet && exit 0
+          git diff --cached --quiet && { echo "No changes to commit."; exit 0; }
           git commit -m "update events.json"
           git push
