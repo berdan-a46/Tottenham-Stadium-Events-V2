@@ -1,0 +1,42 @@
+name: ScrapeEvents
+
+on:
+  schedule:
+    - cron: "5 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser fonts-liberation libnss3 libgbm1
+
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - env:
+          TM_API_KEY: ${{ secrets.TM_API_KEY }}
+        run: python scripts/run_all_scrapes.py
+
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/events.json
+          git diff --quiet && exit 0
+          git commit -m "update events.json"
+          git push

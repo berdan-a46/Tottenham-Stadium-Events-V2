@@ -1,13 +1,12 @@
-from django.http import HttpResponse
 import json
 import heapq
 from datetime import datetime
-from scripts.tottenhamFootballMen import tottenhamFootballMen
-from scripts.TMEvents import TMEvents
+from tottenhamFootballMen import tottenhamFootballMen
+from TMEvents import TMEvents
 import logging
 from django.http import JsonResponse
-
-logger = logging.getLogger(__name__)
+import time
+from pathlib import Path
 
 def parseDate(event):
 
@@ -22,14 +21,15 @@ def parseDate(event):
             f"Failed to parse date/time. date={date!r}, time={time!r}, event={event!r}"
         ) from e
 
-def index(request):
+
+def runAllScripts():
     eventDictionary = {}
-    tm_events = TMEvents()
-    spurs_events = tottenhamFootballMen()
+    tmEvents = TMEvents()
+    spursEvents = tottenhamFootballMen()
 
 
-    eventDictionary["ticketMasterTottenham"] = tm_events
-    eventDictionary["tottenhamFootballMen"] = spurs_events
+    eventDictionary["ticketMasterTottenham"] = tmEvents
+    eventDictionary["tottenhamFootballMen"] = spursEvents
 
     minHeap = []
     result = []
@@ -42,14 +42,29 @@ def index(request):
             heapq.heappush(minHeap, (firstEventDate, firstEvent, 0, eventList))
 
     while minHeap:
-        currentDate, currentEvent, index_in_list, eventList = heapq.heappop(minHeap)
+        currentDate, currentEvent, indexInList, eventList = heapq.heappop(minHeap)
         result.append(currentEvent)
 
-        if index_in_list + 1 < len(eventList):
-            nextEvent = eventList[index_in_list + 1]
+        if indexInList + 1 < len(eventList):
+            nextEvent = eventList[indexInList + 1]
             nextEventDate = parseDate(nextEvent)
             heapq.heappush(
-                minHeap, (nextEventDate, nextEvent, index_in_list + 1, eventList)
+                minHeap, (nextEventDate, nextEvent, indexInList + 1, eventList)
             )
 
-    return HttpResponse(json.dumps(result))
+    return result
+
+
+if __name__ == "__main__":
+    events = runAllScripts()
+
+    out_path = Path("public/data/events.json")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    payload = {
+        "updated_at": int(time.time()),
+        "events": events
+    }
+
+    out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    
