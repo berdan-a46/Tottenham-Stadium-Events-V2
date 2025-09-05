@@ -1,4 +1,255 @@
 {
-  "updated_at": 0,
-  "events": [] 
+  "updated_at": 1757087779,
+  "events": [
+    [
+      "ticketMasterEvent",
+      "Arijit Singh - Live In Concert",
+      "Friday 05 September 2025",
+      "17:00"
+    ],
+    [
+      "Football",
+      "Spurs vs Villarreal",
+      "Tuesday 16 September 2025",
+      "19:00",
+      [
+        "TOT",
+        "VIL"
+      ]
+    ],
+    [
+      "ticketMasterEvent",
+      "Post Malone Presents: the Big Ass World Tour",
+      "Saturday 20 September 2025",
+      "16:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "Post Malone Presents: the Big Ass World Tour",
+      "Sunday 21 September 2025",
+      "17:00"
+    ],
+    [
+      "Football",
+      "Spurs vs Doncaster Rovers",
+      "Wednesday 24 September 2025",
+      "18:45",
+      [
+        "TOT",
+        "DON"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Wolverhampton Wanderers",
+      "Saturday 27 September 2025",
+      "19:00",
+      [
+        "TOT",
+        "WOL"
+      ]
+    ],
+    [
+      "ticketMasterEvent",
+      "Cleveland Browns V. Minnesota Vikings",
+      "Sunday 05 October 2025",
+      "14:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "New York Jets V. Denver Broncos",
+      "Sunday 12 October 2025",
+      "14:30"
+    ],
+    [
+      "Football",
+      "Spurs vs Aston Villa",
+      "Sunday 19 October 2025",
+      "13:00",
+      [
+        "TOT",
+        "AVL"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Chelsea",
+      "Saturday 01 November 2025",
+      "15:00",
+      [
+        "TOT",
+        "CHE"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs FC Copenhagen",
+      "Tuesday 04 November 2025",
+      "20:00",
+      [
+        "TOT",
+        "COP"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Manchester United",
+      "Saturday 08 November 2025",
+      "15:00",
+      [
+        "TOT",
+        "MUN"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Fulham",
+      "Saturday 29 November 2025",
+      "15:00",
+      [
+        "TOT",
+        "FUL"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Brentford",
+      "Saturday 06 December 2025",
+      "15:00",
+      [
+        "TOT",
+        "BRE"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Slavia Prague",
+      "Tuesday 09 December 2025",
+      "20:00",
+      [
+        "TOT",
+        "PRA"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Liverpool",
+      "Saturday 20 December 2025",
+      "15:00",
+      [
+        "TOT",
+        "LIV"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Sunderland",
+      "Saturday 03 January 2026",
+      "15:00",
+      [
+        "TOT",
+        "SUN"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs West Ham United",
+      "Saturday 17 January 2026",
+      "15:00",
+      [
+        "TOT",
+        "WHU"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Borussia Dortmund",
+      "Tuesday 20 January 2026",
+      "20:00",
+      [
+        "TOT",
+        "BVB"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Manchester City",
+      "Saturday 31 January 2026",
+      "15:00",
+      [
+        "TOT",
+        "MCI"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Newcastle United",
+      "Wednesday 11 February 2026",
+      "20:00",
+      [
+        "TOT",
+        "NEW"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Arsenal",
+      "Saturday 21 February 2026",
+      "15:00",
+      [
+        "TOT",
+        "ARS"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Crystal Palace",
+      "Wednesday 04 March 2026",
+      "20:00",
+      [
+        "TOT",
+        "CRY"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Nottingham Forest",
+      "Saturday 21 March 2026",
+      "15:00",
+      [
+        "TOT",
+        "NFO"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Brighton & Hove Albion",
+      "Saturday 18 April 2026",
+      "14:00",
+      [
+        "TOT",
+        "BHA"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Leeds United",
+      "Saturday 09 May 2026",
+      "14:00",
+      [
+        "TOT",
+        "LEE"
+      ]
+    ],
+    [
+      "Football",
+      "Spurs vs Everton",
+      "Sunday 24 May 2026",
+      "15:00",
+      [
+        "TOT",
+        "EVE"
+      ]
+    ]
+  ]
 }
