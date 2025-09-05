@@ -16,21 +16,25 @@ function App() {
     fetchEvents();
   }, []);
 
-  const fetchEvents = () => {
+  const fetchEvents = async () => {
     setLoaded(false);
     setIsRefreshDisabled(true);
-    axios.get(`https://tottenham-stadium-events.onrender.com/events/oneSelenium`)
-      .then((response) => {
-        setEvents(response.data);
-        setLoaded(true);
-        setLastTimeRefreshed(Date.now());
-      })
-      .catch((error) => {
-        console.error("Error fetching events:", error);
-        setError(error);
-        setLoaded(true);
-      });
+
+    try {
+      const response = await axios.get('/data/events.json');
+      const payload = response.data || {};
+      const list = Array.isArray(payload.events) ? payload.events : [];
+      setEvents(list);
+      setLastTimeRefreshed(Date.now());
+      console.log(list)
+      setLoaded(true);
+    } catch (error) {
+      console.error('Error fetching events.json:', error);
+      setError(error);
+      setLoaded(true);
+    }
   };
+
 
   useEffect(() => {
     if (!loaded || lastTimeRefreshed === null) {
