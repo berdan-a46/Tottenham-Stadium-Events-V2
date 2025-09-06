@@ -1,4 +1,0 @@
-chromium
-fonts-liberation
-libnss3
-libgbm1
