@@ -8,11 +8,14 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-
   useEffect(() => {
     fetchEvents();
   }, []);
   
+  /*
+  Fetch events from events.json file. Prevent caching to prevent old data from being presented.
+  Set the events list, handle loaded state, and any errors
+  */
   const fetchEvents = async () => {
     setLoaded(false);
     setError(null);
@@ -38,11 +41,14 @@ function App() {
     <>
       <div className="event-header">
         <h2>Tottenham Hotspur Stadium Events</h2>
+
+        {/* Show loading bar and any error messages */}
         <div className="refresh-container" style={{ textAlign: 'center' }}>
           {!loaded && <div className="loading-bar"></div>}
           {error && <p className="error">Error: {error.message}</p>}
         </div>
 
+        {/* Render events once data is loaded */}
         <div className="event-container">
           {loaded &&
             events.map((event, index) => (

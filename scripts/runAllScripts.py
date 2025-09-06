@@ -9,7 +9,6 @@ import time
 from pathlib import Path
 
 def parseDate(event):
-
     date = event[2] if len(event) > 2 else ""
     time = event[3] if len(event) > 3 else ""
     dateTime = f"{date} {time}"
@@ -41,6 +40,7 @@ def runAllScripts():
             firstEventDate = parseDate(firstEvent)
             heapq.heappush(minHeap, (firstEventDate, firstEvent, 0, eventList))
 
+    # Continuously pop the earliest event and push the next from the same list
     while minHeap:
         currentDate, currentEvent, indexInList, eventList = heapq.heappop(minHeap)
         result.append(currentEvent)

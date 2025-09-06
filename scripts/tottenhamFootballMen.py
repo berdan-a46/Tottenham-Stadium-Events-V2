@@ -44,6 +44,7 @@ def formatDateTime(date, day):
 def tottenhamFootballMen():
     finalEvents = []
 
+    #Set up driver, visit website and bypass cookies button
     options = Options()
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
@@ -53,13 +54,10 @@ def tottenhamFootballMen():
     options.page_load_strategy = "none"
     driver = webdriver.Chrome(options=options)  
     driver.set_page_load_timeout(120)
-
     driver.get('https://www.tottenhamhotspur.com/fixtures/men/')
-    
     wait = WebDriverWait(driver, 120)
-
-
     wait.until(EC.element_to_be_clickable((By.ID,'onetrust-accept-btn-handler'))).click()
+
 
     fixtureGroups = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME,"FixtureGroup")))
     for group in fixtureGroups:
@@ -72,6 +70,7 @@ def tottenhamFootballMen():
             if scoresText != "VS":
                 continue
             try:
+                #Extract kick off date and time
                 fixtureDesktop = fixture.find_element(By.CLASS_NAME, 'FixtureItem__desktop')
                 fixtureDesktopWrapper = fixtureDesktop.find_element(By.CLASS_NAME, 'wrapper')
                 homeGameTest = fixtureDesktopWrapper.find_element(By.CSS_SELECTOR, '.stadium-tag.stadium-tag--home')
@@ -81,6 +80,7 @@ def tottenhamFootballMen():
                 fixtureDate = fixtureItemKickOffTimeText.splitlines()[1]
                 formattedDate, formattedTime = formatDateTime(fixtureDate, fixtureDay)
                 
+                #Extract abbreviations for the teams playing
                 abbreviationsAsText = []
                 abbreviations = fixtureDesktopWrapper.find_element(By.CLASS_NAME, 'FixtureItem__crests').find_elements(By.TAG_NAME, "p")
                 for abbreviation in abbreviations:
