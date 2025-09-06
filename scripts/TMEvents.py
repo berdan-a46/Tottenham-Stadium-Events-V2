@@ -1,6 +1,6 @@
 import requests
-from datetime import datetime
 import os
+from datetime import datetime, timezone
 
 try:
     from dotenv import load_dotenv
@@ -17,6 +17,18 @@ def isAlreadySameDateAndTime(eventArray, currentEvent):
          if event[1] == currentEvent['dates']['start']["localDate"] and event[2] == event['dates']['start']["localTime"]:
               return True
     return False
+
+def isUpcoming(event):
+    try:
+        eventDate = datetime.strptime(
+            event['dates']['start']["localDate"], "%Y-%m-%d"
+        ).date()
+    except Exception as e:
+        print("date parse failed:", e)
+
+    today = datetime.now(timezone.utc).date()
+    return eventDate >= today
+
 
 def formatEvents(events):
     formattedEvents = []
@@ -39,7 +51,7 @@ def TMEvents():
     if '_embedded' in data:
         events = data['_embedded']['events']
         for event in events:
-            if not isAlreadySameDateAndTime(acceptedEvents,event):
+            if not isAlreadySameDateAndTime(acceptedEvents,event) and isUpcoming(event):
                 acceptedEvents.append(["ticketMasterEvent",event["name"], event['dates']['start']["localDate"], event['dates']['start']["localTime"]])
     else:
         print("Failure retrieving")
