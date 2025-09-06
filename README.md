@@ -1,5 +1,7 @@
 # Tottenham Stadium Events (V2)
 
+https://tottenham-stadium-events.netlify.app/
+
 ### Project Overview
 This project was inspired by a real-world problem: a family member unfamiliar with English and technology struggled to find event schedules for the Spurs Stadium. To address this, I built an automated system that collects and displays all events hosted at the stadium in one place.
 
@@ -17,7 +19,7 @@ This version removes the Django backend in favor of a lightweight pipeline: Pyth
   - Fetch Ticketmaster events via API.
   - Scrape Spurs fixtures via Selenium.
   - Normalize, de-dupe, and merge events into a single list.
-  - Write results to /web/public/data/events.json.
+  - Write results to /frontend/public/data/events.json.
 
 - React frontend
   - Reads the static JSON file.
