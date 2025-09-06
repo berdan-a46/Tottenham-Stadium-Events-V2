@@ -21,7 +21,9 @@ function App() {
     setIsRefreshDisabled(true);
 
     try {
-      const response = await axios.get('/data/events.json');
+      const response = await axios.get('/data/events.json', {
+        headers: { 'Cache-Control': 'no-cache' },
+      });
       const payload = response.data || {};
       const list = Array.isArray(payload.events) ? payload.events : [];
       setEvents(list);
