@@ -1,5 +1,5 @@
 {
-  "updated_at": 1757991517,
+  "updated_at": 1758077838,
   "events": [
     [
       "ticketMasterEvent",
@@ -12,34 +12,6 @@
       "Post Malone Presents: the Big Ass World Tour",
       "Sunday 21 September 2025",
       "17:00"
-    ],
-    [
-      "ticketMasterEvent",
-      "Cleveland Browns V. Minnesota Vikings",
-      "Sunday 05 October 2025",
-      "14:30"
-    ],
-    [
-      "ticketMasterEvent",
-      "New York Jets V. Denver Broncos",
-      "Sunday 12 October 2025",
-      "14:30"
-    ],
-    [
-      "ticketMasterEvent",
-      "Saracens Women v Sale Sharks & Saracens Men v Northampton Saints",
-      "Saturday 28 March 2026",
-      "14:30"
-    ],
-    [
-      "Football",
-      "Spurs vs Villarreal",
-      "Tuesday 16 September 2026",
-      "19:00",
-      [
-        "TOT",
-        "VIL"
-      ]
     ],
     [
       "Football",
@@ -60,6 +32,18 @@
         "TOT",
         "WOL"
       ]
+    ],
+    [
+      "ticketMasterEvent",
+      "Cleveland Browns V. Minnesota Vikings",
+      "Sunday 05 October 2025",
+      "14:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "New York Jets V. Denver Broncos",
+      "Sunday 12 October 2025",
+      "14:30"
     ],
     [
       "Football",
@@ -222,6 +206,12 @@
       ]
     ],
     [
+      "ticketMasterEvent",
+      "The Showdown 6 - Saracens Men & Women",
+      "Saturday 28 March 2026",
+      "14:30"
+    ],
+    [
       "Football",
       "Spurs vs Brighton & Hove Albion",
       "Saturday 18 April 2026",
@@ -250,6 +240,12 @@
         "TOT",
         "EVE"
       ]
+    ],
+    [
+      "ticketMasterEvent",
+      "Gorillaz",
+      "Saturday 20 June 2026",
+      "16:00"
     ]
   ]
 }
