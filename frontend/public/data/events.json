@@ -1,5 +1,5 @@
 {
-  "updated_at": 1758077838,
+  "updated_at": 1758164371,
   "events": [
     [
       "ticketMasterEvent",
@@ -84,6 +84,12 @@
         "TOT",
         "MUN"
       ]
+    ],
+    [
+      "ticketMasterEvent",
+      "The Ring: Unfinished Business Eubank Jr v Benn 2",
+      "Saturday 15 November 2025",
+      "17:00"
     ],
     [
       "Football",
