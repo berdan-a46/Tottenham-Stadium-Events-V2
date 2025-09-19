@@ -1,17 +1,17 @@
 {
-  "updated_at": 1758164371,
+  "updated_at": 1758251000,
   "events": [
     [
       "ticketMasterEvent",
       "Post Malone Presents: the Big Ass World Tour",
       "Saturday 20 September 2025",
-      "16:30"
+      "17:00"
     ],
     [
       "ticketMasterEvent",
       "Post Malone Presents: the Big Ass World Tour",
       "Sunday 21 September 2025",
-      "17:00"
+      "16:30"
     ],
     [
       "Football",
@@ -84,6 +84,12 @@
         "TOT",
         "MUN"
       ]
+    ],
+    [
+      "ticketMasterEvent",
+      "VENUE PREMIUM SEATS - The Ring: Unfinished Business Eubank Jr v Benn 2",
+      "Saturday 15 November 2025",
+      "17:00"
     ],
     [
       "ticketMasterEvent",
