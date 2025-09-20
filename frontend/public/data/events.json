@@ -1,5 +1,5 @@
 {
-  "updated_at": 1758251000,
+  "updated_at": 1758336995,
   "events": [
     [
       "ticketMasterEvent",
@@ -59,7 +59,7 @@
       "Football",
       "Spurs vs Chelsea",
       "Saturday 01 November 2025",
-      "15:00",
+      "17:30",
       [
         "TOT",
         "CHE"
@@ -79,7 +79,7 @@
       "Football",
       "Spurs vs Manchester United",
       "Saturday 08 November 2025",
-      "15:00",
+      "12:30",
       [
         "TOT",
         "MUN"
@@ -101,7 +101,7 @@
       "Football",
       "Spurs vs Fulham",
       "Saturday 29 November 2025",
-      "15:00",
+      "20:00",
       [
         "TOT",
         "FUL"
