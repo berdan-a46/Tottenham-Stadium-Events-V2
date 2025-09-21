@@ -1,12 +1,6 @@
 {
-  "updated_at": 1758336995,
+  "updated_at": 1758424206,
   "events": [
-    [
-      "ticketMasterEvent",
-      "Post Malone Presents: the Big Ass World Tour",
-      "Saturday 20 September 2025",
-      "17:00"
-    ],
     [
       "ticketMasterEvent",
       "Post Malone Presents: the Big Ass World Tour",
@@ -258,6 +252,18 @@
       "Gorillaz",
       "Saturday 20 June 2026",
       "16:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
+      "Saturday 27 June 2026",
+      "17:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
+      "Sunday 28 June 2026",
+      "17:00"
     ]
   ]
 }
