@@ -1,12 +1,6 @@
 {
-  "updated_at": 1758424206,
+  "updated_at": 1758510593,
   "events": [
-    [
-      "ticketMasterEvent",
-      "Post Malone Presents: the Big Ass World Tour",
-      "Sunday 21 September 2025",
-      "16:30"
-    ],
     [
       "Football",
       "Spurs vs Doncaster Rovers",
@@ -264,6 +258,18 @@
       "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
       "Sunday 28 June 2026",
       "17:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "System Of A Down",
+      "Monday 13 July 2026",
+      "19:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "System Of A Down",
+      "Wednesday 15 July 2026",
+      "19:00"
     ]
   ]
 }
