@@ -12,12 +12,25 @@ apiKey = os.environ.get("TM_API_KEY")
 if not apiKey:
     raise RuntimeError("TM_API_KEY not set")
 
-#Sometimes ticketmaster api returns duplicate event. Use this helper function to filter out these events
-def isDuplicate(eventArray, currentEvent):
-    for event in eventArray:
-         if event[1] == currentEvent['dates']['start']["localDate"] and event[2] == event['dates']['start']["localTime"]:
-              return True
-    return False
+#Sometimes ticketmaster api returns duplicate events. Use this helper function to filter out these events
+def dedupeEvents(events):
+    eventsDictionary = {}
+
+    for event in events:
+        eventType, name, dateStr, timeStr = event
+        key = (dateStr, timeStr)
+
+        if key not in eventsDictionary:
+            eventsDictionary[key] = event
+        else:
+            # Compare the duplicates. Keep the one with a shorter name
+            existingEvent = eventsDictionary[key]
+            if len(name) < len(existingEvent[1]):
+                eventsDictionary[key] = event
+
+    # Convert dictionary back to a list of events
+    dedupedEvents = list(eventsDictionary.values())
+    return dedupedEvents
 
 """
 Helper function to filter out events that may have passed.
@@ -57,13 +70,14 @@ def TMEvents():
     if '_embedded' in data:
         events = data['_embedded']['events']
         for event in events:
-            if not isDuplicate(acceptedEvents,event) and isUpcoming(event):
+            if isUpcoming(event):
                 acceptedEvents.append(["ticketMasterEvent",event["name"], event['dates']['start']["localDate"], event['dates']['start']["localTime"]])
     else:
         print("Failure retrieving")
         print(data)
 
-    formattedEvents = formatEvents(acceptedEvents)
+
+    formattedEvents = formatEvents(dedupeEvents(acceptedEvents))
 
 
     #Filter out football events from the accepted events so they aren't duplicated with the Spurs fixtures
