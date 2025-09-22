@@ -1,28 +1,6 @@
 {
-  "updated_at": 1757162165,
+  "updated_at": 1758510593,
   "events": [
-    [
-      "Football",
-      "Spurs vs Villarreal",
-      "Tuesday 16 September 2025",
-      "19:00",
-      [
-        "TOT",
-        "VIL"
-      ]
-    ],
-    [
-      "ticketMasterEvent",
-      "Post Malone Presents: the Big Ass World Tour",
-      "Saturday 20 September 2025",
-      "16:30"
-    ],
-    [
-      "ticketMasterEvent",
-      "Post Malone Presents: the Big Ass World Tour",
-      "Sunday 21 September 2025",
-      "17:00"
-    ],
     [
       "Football",
       "Spurs vs Doncaster Rovers",
@@ -69,7 +47,7 @@
       "Football",
       "Spurs vs Chelsea",
       "Saturday 01 November 2025",
-      "15:00",
+      "17:30",
       [
         "TOT",
         "CHE"
@@ -89,17 +67,29 @@
       "Football",
       "Spurs vs Manchester United",
       "Saturday 08 November 2025",
-      "15:00",
+      "12:30",
       [
         "TOT",
         "MUN"
       ]
     ],
     [
+      "ticketMasterEvent",
+      "VENUE PREMIUM SEATS - The Ring: Unfinished Business Eubank Jr v Benn 2",
+      "Saturday 15 November 2025",
+      "17:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "The Ring: Unfinished Business Eubank Jr v Benn 2",
+      "Saturday 15 November 2025",
+      "17:00"
+    ],
+    [
       "Football",
       "Spurs vs Fulham",
       "Saturday 29 November 2025",
-      "15:00",
+      "20:00",
       [
         "TOT",
         "FUL"
@@ -216,6 +206,12 @@
       ]
     ],
     [
+      "ticketMasterEvent",
+      "The Showdown 6 - Saracens Men & Women",
+      "Saturday 28 March 2026",
+      "14:30"
+    ],
+    [
       "Football",
       "Spurs vs Brighton & Hove Albion",
       "Saturday 18 April 2026",
@@ -244,6 +240,36 @@
         "TOT",
         "EVE"
       ]
+    ],
+    [
+      "ticketMasterEvent",
+      "Gorillaz",
+      "Saturday 20 June 2026",
+      "16:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
+      "Saturday 27 June 2026",
+      "17:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
+      "Sunday 28 June 2026",
+      "17:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "System Of A Down",
+      "Monday 13 July 2026",
+      "19:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "System Of A Down",
+      "Wednesday 15 July 2026",
+      "19:00"
     ]
   ]
 }
