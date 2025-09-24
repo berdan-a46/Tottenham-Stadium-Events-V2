@@ -8,12 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 from datetime import datetime
-from pathlib import Path
-import os
-import sys
-import time
-import platform
-
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 def formatDateTime(date, day):
     months = {
@@ -28,7 +24,8 @@ def formatDateTime(date, day):
         
         today = datetime.now()
         assumed_year = today.year
-        fixture_date = datetime(assumed_year, month, dayNumber)
+        # fixture_date = datetime(assumed_year, month, dayNumber)
+        fixture_date = datetime(assumed_year, month, dayNumber, tzinfo=ZoneInfo("Europe/London"))
         if fixture_date < today:
             fixture_date = datetime(assumed_year + 1, month, dayNumber)
 
