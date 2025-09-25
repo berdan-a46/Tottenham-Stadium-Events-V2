@@ -11,6 +11,8 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    env:
+      TZ: Europe/London
 
     steps:
       - uses: actions/checkout@v4
