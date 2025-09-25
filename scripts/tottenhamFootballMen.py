@@ -22,7 +22,7 @@ def formatDateTime(date, day):
         dayNumber = int(dayNumber)
         month = months[monthStr.upper()]
         
-        today = datetime.now()
+        today = datetime.now(ZoneInfo("Europe/London"))
         assumed_year = today.year
         fixture_date = datetime(assumed_year, month, dayNumber, tzinfo=ZoneInfo("Europe/London"))
         if fixture_date < today:
