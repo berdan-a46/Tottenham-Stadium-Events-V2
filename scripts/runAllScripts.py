@@ -7,6 +7,7 @@ import logging
 from django.http import JsonResponse
 import time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 def parseDate(event):
     date = event[2] if len(event) > 2 else ""
@@ -14,7 +15,7 @@ def parseDate(event):
     dateTime = f"{date} {time}"
 
     try:
-        return datetime.strptime(dateTime, "%A %d %B %Y %H:%M")
+        return datetime.strptime(dateTime, "%A %d %B %Y %H:%M").replace(tzinfo=ZoneInfo("Europe/London"))
     except ValueError as e:
         raise ValueError(
             f"Failed to parse date/time. date={date!r}, time={time!r}, event={event!r}"
