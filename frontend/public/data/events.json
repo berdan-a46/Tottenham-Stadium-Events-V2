@@ -1,16 +1,6 @@
 {
-  "updated_at": 1758855761,
+  "updated_at": 1758941788,
   "events": [
-    [
-      "Football",
-      "Spurs vs Wolverhampton Wanderers",
-      "Saturday 27 September 2025",
-      "20:00",
-      [
-        "TOT",
-        "WOL"
-      ]
-    ],
     [
       "ticketMasterEvent",
       "Cleveland Browns V. Minnesota Vikings",
@@ -22,6 +12,58 @@
       "New York Jets V. Denver Broncos",
       "Sunday 12 October 2025",
       "14:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "The Ring: Unfinished Business Eubank Jr v Benn 2",
+      "Saturday 15 November 2025",
+      "17:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "The Showdown 6 - Saracens Men & Women",
+      "Saturday 28 March 2026",
+      "14:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "Gorillaz",
+      "Saturday 20 June 2026",
+      "16:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
+      "Saturday 27 June 2026",
+      "17:30"
+    ],
+    [
+      "ticketMasterEvent",
+      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
+      "Sunday 28 June 2026",
+      "17:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "System Of A Down",
+      "Monday 13 July 2026",
+      "19:00"
+    ],
+    [
+      "ticketMasterEvent",
+      "System Of A Down",
+      "Wednesday 15 July 2026",
+      "19:00"
+    ],
+    [
+      "Football",
+      "Spurs vs Wolverhampton Wanderers",
+      "Saturday 27 September 2026",
+      "20:00",
+      [
+        "TOT",
+        "WOL"
+      ]
     ],
     [
       "Football",
@@ -62,12 +104,6 @@
         "TOT",
         "MUN"
       ]
-    ],
-    [
-      "ticketMasterEvent",
-      "The Ring: Unfinished Business Eubank Jr v Benn 2",
-      "Saturday 15 November 2025",
-      "17:00"
     ],
     [
       "Football",
@@ -190,12 +226,6 @@
       ]
     ],
     [
-      "ticketMasterEvent",
-      "The Showdown 6 - Saracens Men & Women",
-      "Saturday 28 March 2026",
-      "14:30"
-    ],
-    [
       "Football",
       "Spurs vs Brighton & Hove Albion",
       "Saturday 18 April 2026",
@@ -224,36 +254,6 @@
         "TOT",
         "EVE"
       ]
-    ],
-    [
-      "ticketMasterEvent",
-      "Gorillaz",
-      "Saturday 20 June 2026",
-      "16:00"
-    ],
-    [
-      "ticketMasterEvent",
-      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
-      "Saturday 27 June 2026",
-      "17:30"
-    ],
-    [
-      "ticketMasterEvent",
-      "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
-      "Sunday 28 June 2026",
-      "17:00"
-    ],
-    [
-      "ticketMasterEvent",
-      "System Of A Down",
-      "Monday 13 July 2026",
-      "19:00"
-    ],
-    [
-      "ticketMasterEvent",
-      "System Of A Down",
-      "Wednesday 15 July 2026",
-      "19:00"
     ]
   ]
 }
