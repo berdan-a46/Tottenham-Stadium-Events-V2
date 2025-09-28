@@ -5,8 +5,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
 from datetime import datetime
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -21,19 +19,24 @@ def formatDateTime(date, day):
         dayNumber, monthStr = dayNumberAndMonth.split()
         dayNumber = int(dayNumber)
         month = months[monthStr.upper()]
-        
+
+        #Build timezone-aware fixture datetime to compare with the day
+        time_str = timePart.strip()
+        hour_str, minute_str = time_str.split(":")
+        hour = int(hour_str)
+        minute = int(minute_str)
         today = datetime.now(ZoneInfo("Europe/London"))
         assumed_year = today.year
-        fixture_date = datetime(assumed_year, month, dayNumber, tzinfo=ZoneInfo("Europe/London"))
-        if fixture_date < today:
-            fixture_date = datetime(assumed_year + 1, month, dayNumber)
+        fixture_date = datetime(assumed_year, month, dayNumber, hour, minute,tzinfo=ZoneInfo("Europe/London"))
 
-        formattedDate = f"{day} {dayNumber:02d} {fixture_date.strftime('%B')} {fixture_date.year}"
-        formattedTime = timePart.strip()
+        if fixture_date < today:
+            fixture_date = datetime(assumed_year + 1, month, dayNumber, hour, minute,tzinfo=ZoneInfo("Europe/London"))
+        formattedDate = fixture_date.strftime("%A %d %B %Y")
+        formattedTime = fixture_date.strftime("%H:%M")
         return formattedDate, formattedTime
 
     except Exception as e:
-        print(f"Error in format_date_time: {e}")
+        print(f"Error in formatDateTime: {e} | date={date!r}, day={day!r}")
         return None, None
 
 
